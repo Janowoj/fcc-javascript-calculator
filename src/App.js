@@ -7,10 +7,18 @@ function App() {
 
   const display = (symbol) => {
     setInput(prev => prev + symbol);
+    if (input[input.length - 1] === "=") {
+      if (/[0-9.]/.test(symbol)) {
+        setInput(symbol);
+      } else {
+        setInput(output + symbol);
+      }
+    }
   };
 
   const calculate = () => {
     setOutput(eval(input));
+    setInput(prev => prev + "=");
   }
 
   const allClear = () => {
